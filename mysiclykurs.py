@@ -13,7 +13,7 @@ customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark",
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 # Создание основного окна программы
-version = "v1.0" # переменная для показа версии обновления программы
+version = "v1.9.4" # переменная для показа версии обновления программы
 
 # функция для кнопки очистки поля text-box
 def clear_tb():
@@ -83,6 +83,10 @@ def insert_text_on_box_lm():
 	text_box_for_track.delete("1.0","end")
 	text_box_for_track.insert("0.0", text_for_box_lm)
 
+# Функция смены темы с тёмной на светлую
+def change_appearance_mode_event(new_appearance_mode: str):
+	customtkinter.set_appearance_mode(new_appearance_mode)
+
 # ТЕКСТЫ ПЕСЕН ИСПОЛНИТЕЛЕЙ
 text_for_box_korol = (musiclytexts.texts_korol)
 text_for_box_kis_kis = (musiclytexts.texts_kis_kis)
@@ -102,7 +106,7 @@ text_for_box_mk = (musiclytexts.texts_krug)
 text_for_box_lm = (musiclytexts.texts_lasmay)
 
 app = customtkinter.CTk() # задаем основную переменную программы
-app.geometry(f"{480}x{700}") # указываем разрешение экрана программы
+app.geometry(f"{480}x{750}") # указываем разрешение экрана программы
 app.title(f"Musicly : Ознакомление с жанрами музыки [{version}]") # создаем название программы
 app.resizable(width=False, height=False) # запрещаем пользователю редактировать размер программы
 
@@ -178,8 +182,12 @@ button_your_text.pack(pady=10, padx=10)
 button_beats = customtkinter.CTkButton(master=frame_1, text="Музыка", command=open_music)
 button_beats.pack(pady=10, padx=10)
 
+# Смена темы с тёмной на светлую
+appearance_mode_optionemenu = customtkinter.CTkOptionMenu(frame_1, values=["Dark", "Light"], command=change_appearance_mode_event)
+appearance_mode_optionemenu.pack(padx=10, pady=10)
+
 # Временная кнопка рестарта программы, для удобста
-button_restart = customtkinter.CTkButton(master=frame_1, text="Restart", command=restart_program)
-button_restart.pack(pady=10, padx=10)
+#button_restart = customtkinter.CTkButton(master=frame_1, text="Restart", command=restart_program)
+#button_restart.pack(pady=10, padx=10)
 
 app.mainloop() # параметр запуска программы. Без него программа не запустится
